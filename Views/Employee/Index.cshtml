@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index - Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card text-white">
+    <div class="card-header bg-primary">Employee List</div>
+    <div class="card-body text-dark">
+        <div align="right">
+            <a asp-controller="Employee" asp-action="Create" class="btn btn-info text-white"><i class="fas fa-plus"></i> &nbsp; Create</a>
+        </div>
+        <div class="col-12 border p-3 mt-2">
+        @{ await Html.RenderPartialAsync("_employeeIndexTable");}
+    </div>
+</div>

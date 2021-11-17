@@ -1,0 +1,68 @@
+﻿@model EasyERP.Models.ViewModels.EmployeeViewModel
+
+@using EasyERP.Extentions
+
+@{
+    ViewData["Title"] = "Create - Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card text-white">
+    <div class="card-header bg-primary">Add New Employee</div>
+    <div class="card-body text-dark">
+        <div>
+            <form id="employeeCreateForm" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <div class="col-2 text-primary">
+                        <label asp-for="Employee.FirstName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter first name" asp-for="Employee.FirstName" />
+                    </div>
+                    <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2 text-primary">
+                        <label asp-for="Employee.LastName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="lastName" class="form-control mt-2" placeholder="Enter last name" asp-for="Employee.LastName" />
+                    </div>
+                    <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2 text-primary">
+                        <label asp-for="Employee.DepartmentId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select mt-2" id="department" asp-for="Employee.DepartmentId" asp-items="Model.Departments.ToSelectListItem(Model.Employee.DepartmentId)"></select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2 text-primary">
+                        <label asp-for="Employee.Country"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="country" class="form-control mt-2" placeholder="Enter country" asp-for="Employee.Country" />
+                    </div>
+                    <span asp-validation-for="Employee.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4 offset-2 text-primary">
+                        <input type="button" id="employeeCreateSubmit" class="btn btn-primary form-control mt-2 text-white" value="Submit" />
+                    </div>
+                    <div class="col-4">
+                        <a class="btn btn-dark text-white form-control mt-2" asp-controller="Employee" asp-action="Index"><i class="fas fa-arrow-left"></i> &nbsp; Back To List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+}
