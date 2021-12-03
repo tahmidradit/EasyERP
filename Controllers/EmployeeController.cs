@@ -1,8 +1,10 @@
 ﻿using EasyERP.Data;
 using EasyERP.Models;
 using EasyERP.Models.ViewModels;
+using EasyERP.RepositoryInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EasyERP.Areas.Admin.Controllers
@@ -11,14 +13,17 @@ namespace EasyERP.Areas.Admin.Controllers
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly IEmployeeRepository iEmployeeRepository;
 
-        public EmployeeController(ApplicationDbContext context)
+        public EmployeeController(ApplicationDbContext context, IEmployeeRepository iEmployeeRepository)
         {
+            this.iEmployeeRepository = iEmployeeRepository;
             this.context = context;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var employees = await context.Employees.Include(m => m.Department).ToListAsync();
+            // var employees = await context.Employees.Include(m => m.Department).ToListAsync();
+            var employees = iEmployeeRepository.GetAllEmployee();
             return View(employees);
         }
 
@@ -35,20 +40,22 @@ namespace EasyERP.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, ActionName("Create")]
-        public async Task<IActionResult> Create(Employee employee)
+        public IActionResult Create(Employee employee)
         {
             if (ModelState.IsValid)
             {
-                await context.Employees.AddAsync(employee);
-                await context.SaveChangesAsync();
+                // await context.Employees.AddAsync(employee);
+                // await context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
+
+                iEmployeeRepository.Add(employee);
             }
 
             EmployeeViewModel employeeViewModel = new EmployeeViewModel()
             {
                 Employee = new Employee(),
                 Department = new Department(),
-                Departments = await context.Departments.ToListAsync()
+                Departments = context.Departments.ToList()
             };
 
             return View(employeeViewModel);

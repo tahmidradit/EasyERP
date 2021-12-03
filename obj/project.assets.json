@@ -3616,11 +3616,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/tahmidradit/Desktop/Projects/EasyERP/EasyERP.csproj",
+      "projectUniqueName": "/home/tahmidradit/Desktop/Projects/GitRepo/EasyERP/EasyERP.csproj",
       "projectName": "EasyERP",
-      "projectPath": "/home/tahmidradit/Desktop/Projects/EasyERP/EasyERP.csproj",
+      "projectPath": "/home/tahmidradit/Desktop/Projects/GitRepo/EasyERP/EasyERP.csproj",
       "packagesPath": "/home/tahmidradit/.nuget/packages/",
-      "outputPath": "/home/tahmidradit/Desktop/Projects/EasyERP/obj/",
+      "outputPath": "/home/tahmidradit/Desktop/Projects/GitRepo/EasyERP/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/tahmidradit/.nuget/NuGet/NuGet.Config"

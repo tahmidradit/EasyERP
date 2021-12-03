@@ -9,8 +9,12 @@ $(document).ready(function(){
 
     
 
-        if(firstName != "" && lastName != "" && department != "" && country != "") {
+        if($('#firstName').val() == "" || $('#lastName').val() == "" || $('#department').val() == "" || $('#semester').val() == "") {
+            alert("You can't leave any fields empty !");
+        }
 
+        else {
+            
             $.ajax({
                 type: 'POST',
                 data: $('#employeeCreateForm').serialize(),
@@ -21,10 +25,6 @@ $(document).ready(function(){
                     alert("ERROR");
                 }
             });
-        }
-
-        else {
-            alert("You can't leave any fields empty !");
         }
         
     });

@@ -1,4 +1,6 @@
 using EasyERP.Data;
+using EasyERP.RepositoryInterfaces;
+using EasyERP.RepositoryService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeSQLRepository>();
 
 var app = builder.Build();
 
